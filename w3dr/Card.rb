@@ -19,5 +19,22 @@ class Card
         @face_value.to_s
     end
 
+    def self.new_cards(size)
+        cards = []
+        letters = ("a".."z").to_a
+        while cards.length < size / 2
+            cards << self.new(letters.sample, false)
+        end
+
+        new_cards = []
+        cards.each do |card|
+            new_card = self.new(card.face_value, card.face_up)
+            new_cards << new_card
+        end 
+        new_cards << cards 
+        new_cards.shuffle! 
+
+    end 
+
 
 end
