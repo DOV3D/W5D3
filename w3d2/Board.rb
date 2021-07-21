@@ -5,7 +5,7 @@ class Board
     
 
     def initialize(size)
-        @board = Array.new(size) { Array.new(size)}
+        @board = Array.new(size) { Array.new(size, " ")}
         # @card = Card.new(face_value, face_up)
     end 
 
@@ -16,12 +16,12 @@ class Board
                 @board[row][col] = new_cards.shift 
              end 
         end 
+        @board
     end 
 
     def render
-        array = [" ", " ", " "]
         @board.each do |row|
-            puts array.join(" ")
+            puts row.join(" ")
         end
     end
 
@@ -41,9 +41,9 @@ class Board
         row, col = guessed_pos
         
         if !@board[row][col].face_up
-            @board[row][col] = @board[row][col].face_value
+            @board[row][col] = @board[row][col].face_value self.populate[row][col].face_value
         end
-        return @board[row][col].face_value
+        return self.populate[row][col].face_value
     end
 
 
