@@ -1,6 +1,8 @@
+require_relative "00_tree_node.rb"
+
 class KnightPathFinder
 
-    attr_reader :root_node
+    attr_reader :root_node, :considered_positions
 
     def initialize(pos)
         @root_node = PolyTreeNode.new(pos)
@@ -43,10 +45,10 @@ class KnightPathFinder
     def new_move_positions(current_pos)
         new_positions = KnightPathFinder.valid_moves(current_pos)
 
-        new_positions.select! { |pos| @considered_positions.include?(pos) }
+        new_positions.select! { |pos| !@considered_positions.include?(pos) }
         
         new_positions.each do |x|
-            new_knight = KnightPathFinder.new(x)
+            new_knight = PolyTreeNode.new(x)
             @considered_positions << new_knight
         end
 
@@ -54,3 +56,7 @@ class KnightPathFinder
     end 
 
 end 
+
+my_knight = KnightPathFinder.new([3,4])
+p my_knight.new_move_positions([3,4])
+p my_knight.considered_positions
