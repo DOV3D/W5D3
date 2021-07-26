@@ -49,7 +49,7 @@ class KnightPathFinder
     # 2. Adds new moves to visited (@considered_positions)
     # 3. return new moves
     def new_move_positions(current_node)
-        new_nodes = KnightPathFinder.valid_moves(current_pos)
+        new_nodes = KnightPathFinder.valid_moves(current_node)
 
         new_nodes.select! { |node| !@considered_positions.include?(node) }
         
@@ -60,25 +60,23 @@ class KnightPathFinder
         new_nodes
     end 
 
-end 
+    def build_move_tree(target) # [ [3, 3] ]
+        queue = [root_node] # [ [3,3] ... [2,1] ]
 
-def build_move_tree(target)
-    queue = [root_node]
-
-    until queue.empty?
-        node = queue.first
-        if target == node 
-            
-            # return an array of nodes that lead to target 
-        else 
-           new_nodes = new_move_positions(node)
-           queue += new_nodes
-           queue.shift 
+        until queue.empty?
+            node = queue.first # [3,3]
+            if target == node.value # c and c's parent is b
+                path = node.find_all_parents #c.find_all_parents
+                return path
+            else 
+                new_nodes = new_move_positions(node) # [[1,2], [2,1], ...]
+                queue += new_nodes
+                queue.shift 
+            end 
         end 
     end 
 
-
-end 
+end
 
 #my_knight = KnightPathFinder.new([3,4])
 # current_node = PolyTreeNode.new([2,2])
@@ -88,3 +86,6 @@ end
 # my_knight = KnightPathFinder.new([3,4])
 # p my_knight.new_move_positions([3,4])
 # p my_knight.considered_positions
+
+my_knight = KnightPathFinder.new([0,0])
+p my_knight.build_move_tree([7,7]) # => [Node[0,0], Node[2,1], Node[4,2]]
