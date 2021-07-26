@@ -88,4 +88,4 @@ end
 # p my_knight.considered_positions
 
 my_knight = KnightPathFinder.new([0,0])
-p my_knight.build_move_tree([7,7]) # => [Node[0,0], Node[2,1], Node[4,2]]
+p my_knight.build_move_tree([7,7])
