@@ -66,9 +66,9 @@ class PolyTreeNode
     #     # return an array of nodes (starting from root, ending with self)
     # end
 
-    # def inspect
-    #     self.value
-    # end
+    def inspect
+        self.value
+    end
 
 end
 

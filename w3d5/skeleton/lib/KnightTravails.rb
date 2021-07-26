@@ -68,7 +68,6 @@ class KnightPathFinder
                 new_node = PolyTreeNode.new(position)
                 new_node.parent = first_node
                 queue_of_nodes << new_node
-                
             end
         end
     end 
@@ -76,7 +75,6 @@ class KnightPathFinder
     def find_path(end_pos)
         self.build_move_tree
         queue = [root_node]
-
         until queue.empty?
             first = queue.first 
             if first.value == end_pos
@@ -85,20 +83,26 @@ class KnightPathFinder
                 queue += first.children
             end 
             queue.shift
-
         end 
-
     end
 
-    #def trace_path_back
+    def trace_path_back(end_pos)
+        current_node = self.find_path(end_pos)
+        pos_arr = []
+
+        until current_node.parent.nil?
+            pos_arr.unshift(current_node.value)
+            current_node = current_node.parent
+        end
+        
+        [current_node.value] + pos_arr
+    end
 
 end
 
 my_knight = KnightPathFinder.new([0,0])
 
 my_knight.build_move_tree
- puts "build_move_tree did not crash"
-# p my_knight.find_path([3,3])
-#p my_knight.new_move_positions([4, 4])
-#p my_knight.new_move_positions([0,0])
-p KnightPathFinder.valid_moves([0, 0])
+puts "build_move_tree did not crash"
+
+p my_knight.trace_path_back([7,7])
