@@ -55,29 +55,50 @@ class KnightPathFinder
         new_positions
     end 
 
+    #require "byebug"
     def build_move_tree
+        #debugger
         queue_of_nodes = [root_node]
 
         until queue_of_nodes.empty?
-            first_node = queue_of_nodes.first
-
+            first_node = queue_of_nodes.shift
             new_positions = self.new_move_positions(first_node.value)
             
             new_positions.each do |position|
                 new_node = PolyTreeNode.new(position)
                 new_node.parent = first_node
                 queue_of_nodes << new_node
-                queue_of_nodes.shift
+                
             end
         end
     end 
 
-    def find_path
+    def find_path(end_pos)
         self.build_move_tree
+        queue = [root_node]
+
+        until queue.empty?
+            first = queue.first 
+            if first.value == end_pos
+                return first
+            else 
+                queue += first.children
+            end 
+            queue.shift
+
+        end 
+
     end
+
+    #def trace_path_back
 
 end
 
 my_knight = KnightPathFinder.new([0,0])
 
 my_knight.build_move_tree
+ puts "build_move_tree did not crash"
+# p my_knight.find_path([3,3])
+#p my_knight.new_move_positions([4, 4])
+#p my_knight.new_move_positions([0,0])
+p KnightPathFinder.valid_moves([0, 0])

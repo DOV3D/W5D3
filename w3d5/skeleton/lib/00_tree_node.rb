@@ -58,17 +58,17 @@ class PolyTreeNode
         nil
     end
 
-    def find_all_parents  # a => b => c => d
-        return [self] if self.parent.nil?
+    # def find_all_parents  # a => b => c => d
+    #     return [self] if self.parent.nil?
 
-        return self.parent.find_all_parents + [self]
+    #     return self.parent.find_all_parents + [self]
 
-        # return an array of nodes (starting from root, ending with self)
-    end
+    #     # return an array of nodes (starting from root, ending with self)
+    # end
 
-    def inspect
-        self.value
-    end
+    # def inspect
+    #     self.value
+    # end
 
 end
 
@@ -83,4 +83,4 @@ d.parent = c
 c.parent = b
 b.parent = a
 
-d.find_all_parents
+#d.find_all_parents
