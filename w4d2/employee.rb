@@ -15,12 +15,11 @@ class Employee
 
     end 
 
-
 end 
 
 class Manager < Employee
 
-    #attr_reader :
+    attr_reader :employees
 
     def initialize (name, title, salary, boss, *employees)
         super(name, title, salary, boss)
@@ -33,7 +32,8 @@ class Manager < Employee
     
     def bonus(multiplier)
         total = 0 
-
+        # require 'byebug'
+        # debugger
         @employees.each do |employee|
             total += employee.salary 
         end 
@@ -48,8 +48,11 @@ class Manager < Employee
 
 end 
 
-
+# name, title, salary, boss, 
+# david = 
 ned = Employee.new("ned", "engineer", 10000, "darren")
-darren = Manager.new("darren", "manager", 2000, ned)
+darren = Manager.new("darren", "manager", 2000, "david", ned)
 p ned.salary
 p darren.salary
+p ned.bonus(5)
+p darren.bonus(4)
