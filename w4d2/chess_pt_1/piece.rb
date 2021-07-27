@@ -18,3 +18,17 @@ end
 # To start off, you'll want to create an empty Piece class as a placeholder for now. 
 # Write code for #initialize so we can setup the board with instances of Piece in locations where a 
 # Queen/Rook/Knight/ etc. will start and nil where the NullPiece will start.
+
+class Null_Piece < Piece
+
+    def initialize(color, board, pos)
+        super(color, board, pos)
+    
+    end 
+
+    def symbol
+        symbol = "N"
+    end 
+
+
+end 
