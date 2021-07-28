@@ -64,80 +64,86 @@ module Slideable
     end 
 
     def moves
-        #Used by bishop, queen, rook 
+        #Used by bishop, queen, rook   
         #array that collects the moves 
+        arr = []
         #iterate over all the positions a piece can move (info needed from subclass)
-        #for each direction, collect all moves in that direction 
-            #check if reaches the end of the board
-            #check if the other side is present (capture them)
-        #add to moves array 
+        move_dirs.each do |pos|
+            #add to moves array 
+            arr += grow_unblocked_moves_in_dir(pos)
+        end
         #return final array of all possible moves 
-
-    #diagonals: [7,7], [0,0], [0, 7], [7, 0] 
-    #horizontals: [7, x] or [0, x]
-    #verticals: [x, 7] or [x, 0]
-    #horizontal: first pos != 0  && second pos == 0
-
-        positions = @@HORIZONTAL_DIRS + @@DIAGONAL_DIRS 
-        valid = []
-        positions.each do |coords|
-            coords.each do |pos|  
-                #if we are moving horizontally
-                while pos[0] <= 7 || pos[0] >= 0
-                    #move to right 
-                    if pos[0] > 0 && pos[1] == 0
-                        pos[0] += 1
-                        valid << pos
-                    #move to left 
-                    elsif pos[0] < 0 && pos[1] == 0
-                        pos[0] -= 1
-                        valid << pos 
-                    #move to vertically up 
-                    elsif pos[0] == 0  && pos[1] > 0
-                        pos[1] += 1
-                        valid << pos
-                    elsif pos[0] == 0  && pos[1] < 0
-                        pos[1] -= 1
-                        valid << pos
-                    end 
-                    
-
-                end 
-
-
-
-                    
-                
-
-                if pos[0] < 7 && pos[1] < 7 && pos[0] > -7 && pos[1] > -7
-                    valid << pos  
-
-
-        end 
-
-
-
+        arr
     end 
 
     def mov_dirs 
     end 
 
     def grow_unblocked_moves_in_dir(dx, dy)
-    end 
+        # condition for loop breaking
+        arr = []
+        x_pos = self.pos[0]
+        y_pos = self.pos[1]
+        #for each direction, collect all moves in that direction 
+        #check if reaches the end of the board
+        until x_pos == 0 || y_pos == 0 || x_pos == 7 || y_pos == 7 || board.rows[x_pos, y_pos].color == self.color
+            # Add a position
+            x_pos += dx
+            y_pos += dy
+            arr << [x_pos, y_pos]
+            #check if the other side is present (capture them)  
+            break if board.rows[x_pos, y_pos].color != self.color
+        end
+        arr
+    end
+    
+    
 end 
 
 class Rook < Piece
+    def initialize
+        super
+    end
 
+    def symbol
+        # add in rook symbol
+    end
+
+    private
     def move_dirs
-
-    end 
-
+        horizontal_dirs
+    end
 end 
 
 class Bishop < Piece
+    def initialize
+        super
+    end
+
+    def symbol
+        # add in bishop symbol
+    end
+
+    private
+    def move_dirs
+        diagonal_dirs
+    end
 end 
 
 class Queen < Piece
+    def initialize
+        super
+    end
+
+    def symbol
+        # add in queen symbol
+    end
+
+    private
+    def move_dirs
+        horizontal_dirs 
+        diagonal_dirs
+    end
 end 
 
 class Knight < Piece
