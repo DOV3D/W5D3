@@ -1,8 +1,13 @@
 class Piece
+    attr_accessor :pos
     def initialize(color, board, pos)
         @color = color
         @board = board
         @pos = pos
+    end
+
+    def ==(other)
+        
     end
 end
 
@@ -19,7 +24,7 @@ end
 # Write code for #initialize so we can setup the board with instances of Piece in locations where a 
 # Queen/Rook/Knight/ etc. will start and nil where the NullPiece will start.
 
-class Null_Piece < Piece
+class NullPiece < Piece
 
     def initialize(color, board, pos)
         super(color, board, pos)

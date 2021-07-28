@@ -1,53 +1,58 @@
-
+require_relative 'piece'
 class Board
-    attr_reader :board, :nullPiece
+    attr_reader :board, :null_piece
 
     def initialize
-        @board = Array.new(8) {Array.new(8)}
-
+        @rows = Array.new(8) {Array.new(8)}
+        @null_piece = NullPiece
         #set middle squares to null pieces  
-        (2...@board.length - 2).each do |rows|
-            (0...@rows.length).each do |squares|
-                null_piece = NullPiece.new(nil, @board, [rows, squares])
-                @board[rows][squares] = null_piece 
+        (2...@rows.length - 2).each do |row|
+            (0...8).each do |squares|
+                null_piece = NullPiece.new(nil, @rows, [row, squares])
+                @rows[row][squares] = null_piece 
             end 
         end 
 
         #set first two rows to black pieces 
-        (0...2).each do |rows|
-            (0...@rows.length).each do |squares|
-                piece = Piece.new("black", @board, [rows, squares])
-                @board[rows][squares] = piece
+        (0...2).each do |row|
+            (0...8).each do |squares|
+                piece = Piece.new("black", @rows, [row, squares])
+                @rows[row][squares] = piece
             end 
         end 
         
         #set last two rows to white pieces 
-        (6...8).each do |rows|
-            (0...@rows.length).each do |squares|
-                piece = Piece.new("white", @board, [rows, squares])
-                @board[rows][squares] = piece
+        (6...8).each do |row|
+            (0...8).each do |squares|
+                piece = Piece.new("white", @rows, [row, squares])
+                @rows[row][squares] = piece
             end 
         end 
 
     end
 
     def [](pos)
-        @board[pos]
+        row, col = pos
+        @rows[row][col]
     end
 
     def []=(pos, value)
-        @board[pos] = value
+        @rows[pos] = value
     end
 
-    # Update board with th
+    # change board to self
     def move_piece(start_pos, end_pos, color)
-        if !@board[start_pos].nil? && @board[end_pos].nil?
-            @board[start_pos] = nil
-            @board[end_pos] = the_piece.pos
-            # Piece no longer in that position
-        elsif @board[start_pos].nil?
+        if self[start_pos] != NullPiece && self[end_pos] == NullPiece
+            piece = self[start_pos]
+            # Piece no longer in that position / set to Null Piece
+            self[start_pos] = NullPiece.new(nil, @rows, start_pos)
+            piece.pos = end_pos
+            # Update end position with position of piece
+            self[end_pos] = piece
+            p self[start_pos], self[end_pos]
+        elsif self[start_pos] == NullPiece
             raise "No piece at pos #{start_pos}" 
-        elsif !@board[end_pos].nil?
+        elsif !self[end_pos] == NullPiece
             raise "Space occupied"
         end
     end
