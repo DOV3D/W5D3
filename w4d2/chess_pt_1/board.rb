@@ -8,7 +8,7 @@ class Board
         #set middle squares to null pieces  
         (2...@rows.length - 2).each do |row|
             (0...8).each do |squares|
-                null_piece = NullPiece.new(nil, @rows, [row, squares])
+                null_piece = NullPiece.new(nil, self, [row, squares])
                 @rows[row][squares] = null_piece 
             end 
         end 
@@ -16,7 +16,7 @@ class Board
         #set first two rows to black pieces 
         (0...2).each do |row|
             (0...8).each do |squares|
-                piece = Piece.new("black", @rows, [row, squares])
+                piece = Piece.new("black", self, [row, squares])
                 @rows[row][squares] = piece
             end 
         end 
@@ -49,11 +49,10 @@ class Board
         if !self[start_pos].is_a?(NullPiece) && self[end_pos].is_a?(NullPiece)
             piece = self[start_pos]
             # Piece no longer in that position / set to Null Piece
-            self[start_pos] = NullPiece.new(nil, @rows, start_pos)
+            self[start_pos] = NullPiece.new(nil, self, start_pos)
             piece.pos = end_pos
             # Update end position with position of piece
             self[end_pos] = piece
-            p self[start_pos], self[end_pos]
         elsif self[start_pos].is_a? (NullPiece)
             raise "No piece at pos #{start_pos}" 
         elsif !self[end_pos].is_a?(NullPiece)

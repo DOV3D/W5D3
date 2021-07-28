@@ -9,6 +9,8 @@ class Piece
     def inspect 
        "Piece: #{@color}"
     end
+
+
 end
 
 # Each position in the board either holds a moving Piece or a NullPiece (NullPiece will inherit from Piece).
@@ -48,16 +50,73 @@ module Stepable
 end 
 
 module Slideable 
-    @@HORIZONTAL_DIRS = []
-    @@DIAGONAL_DIRS = []
+    @@HORIZONTAL_DIRS = [[-1,0], [1, 0], [0, -1], [0, 1]]
+    @@DIAGONAL_DIRS = [[1, -1], [1, 1], [-1, -1], [-1, 1]]
+
+    
 
     def horizontal_dirs
+        @@HORIZONTAL_DIRS
     end 
 
     def diagonal_dirs
+        @@DIAGONAL_DIRS
     end 
 
     def moves
+        #Used by bishop, queen, rook 
+        #array that collects the moves 
+        #iterate over all the positions a piece can move (info needed from subclass)
+        #for each direction, collect all moves in that direction 
+            #check if reaches the end of the board
+            #check if the other side is present (capture them)
+        #add to moves array 
+        #return final array of all possible moves 
+
+    #diagonals: [7,7], [0,0], [0, 7], [7, 0] 
+    #horizontals: [7, x] or [0, x]
+    #verticals: [x, 7] or [x, 0]
+    #horizontal: first pos != 0  && second pos == 0
+
+        positions = @@HORIZONTAL_DIRS + @@DIAGONAL_DIRS 
+        valid = []
+        positions.each do |coords|
+            coords.each do |pos|  
+                #if we are moving horizontally
+                while pos[0] <= 7 || pos[0] >= 0
+                    #move to right 
+                    if pos[0] > 0 && pos[1] == 0
+                        pos[0] += 1
+                        valid << pos
+                    #move to left 
+                    elsif pos[0] < 0 && pos[1] == 0
+                        pos[0] -= 1
+                        valid << pos 
+                    #move to vertically up 
+                    elsif pos[0] == 0  && pos[1] > 0
+                        pos[1] += 1
+                        valid << pos
+                    elsif pos[0] == 0  && pos[1] < 0
+                        pos[1] -= 1
+                        valid << pos
+                    end 
+                    
+
+                end 
+
+
+
+                    
+                
+
+                if pos[0] < 7 && pos[1] < 7 && pos[0] > -7 && pos[1] > -7
+                    valid << pos  
+
+
+        end 
+
+
+
     end 
 
     def mov_dirs 
@@ -68,6 +127,10 @@ module Slideable
 end 
 
 class Rook < Piece
+
+    def move_dirs
+
+    end 
 
 end 
 
@@ -83,5 +146,5 @@ end
 class King < Piece
 end 
 
-class Pawn < piece
+class Pawn < Piece
 end 
