@@ -1,13 +1,13 @@
 class Piece
-    attr_accessor :pos
+    attr_accessor :pos, :color
     def initialize(color, board, pos)
         @color = color
         @board = board
         @pos = pos
     end
 
-    def ==(other)
-        
+    def inspect 
+       "Piece: #{@color}"
     end
 end
 
@@ -35,5 +35,53 @@ class NullPiece < Piece
         symbol = "N"
     end 
 
+end 
 
+module Stepable 
+    def moves 
+
+    end
+
+    def move_diffs
+    end 
+
+end 
+
+module Slideable 
+    @@HORIZONTAL_DIRS = []
+    @@DIAGONAL_DIRS = []
+
+    def horizontal_dirs
+    end 
+
+    def diagonal_dirs
+    end 
+
+    def moves
+    end 
+
+    def mov_dirs 
+    end 
+
+    def grow_unblocked_moves_in_dir(dx, dy)
+    end 
+end 
+
+class Rook < Piece
+
+end 
+
+class Bishop < Piece
+end 
+
+class Queen < Piece
+end 
+
+class Knight < Piece
+end 
+
+class King < Piece
+end 
+
+class Pawn < piece
 end 

@@ -37,12 +37,16 @@ class Board
     end
 
     def []=(pos, value)
-        @rows[pos] = value
+        row, col = pos
+        @rows[row][col] = value
     end
 
     # change board to self
     def move_piece(start_pos, end_pos, color)
-        if self[start_pos] != NullPiece && self[end_pos] == NullPiece
+        # p self[start_pos].is_a?(NullPiece)
+        # p self[end_pos].is_a?(NullPiece)
+        # p self[start_pos]
+        if !self[start_pos].is_a?(NullPiece) && self[end_pos].is_a?(NullPiece)
             piece = self[start_pos]
             # Piece no longer in that position / set to Null Piece
             self[start_pos] = NullPiece.new(nil, @rows, start_pos)
@@ -50,9 +54,9 @@ class Board
             # Update end position with position of piece
             self[end_pos] = piece
             p self[start_pos], self[end_pos]
-        elsif self[start_pos] == NullPiece
+        elsif self[start_pos].is_a? (NullPiece)
             raise "No piece at pos #{start_pos}" 
-        elsif !self[end_pos] == NullPiece
+        elsif !self[end_pos].is_a?(NullPiece)
             raise "Space occupied"
         end
     end
