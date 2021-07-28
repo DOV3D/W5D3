@@ -41,7 +41,7 @@ end
 
 module Stepable 
     def moves 
-
+        
     end
 
     def move_diffs
@@ -76,9 +76,12 @@ module Slideable
         arr
     end 
 
+    private
     def mov_dirs 
+    
     end 
-
+    
+    private
     def grow_unblocked_moves_in_dir(dx, dy)
         # condition for loop breaking
         arr = []
