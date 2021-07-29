@@ -1,28 +1,50 @@
 require "tdd_practice.rb"
 
 describe Array do
-    
-    
-    describe "#my_uniq" do 
-        let(:arr1) {[1, 2, 1, 1, 3]}
-        let(:arr2) {[1, 1, 1]}
 
-        it "should return unique values in the array" do
-            expect(arr1.my_uniq).to eq([1, 2, 3])
-            expect(arr2.my_uniq).to eq([1])
-        end 
-    end 
+    describe "#uniq" do
+        it "should return an array with uniq values" do
+            expect([1,1,1,1].uniq).to eq([1])
+            expect([1,2,3,1].uniq).to eq([1,2,3])
+            expect([1,2,3,4].uniq).to eq([1,2,3,4])
+            expect([].uniq).to eq([])
+        end
+    end
 
-    describe "#my_uniq" do 
-        let(:arr1) {[1, 2, 1, 1, 3]}
-        let(:arr2) {[-1, 0, 2, -2, 1]}
+    describe "#two_sum" do
+        it "finds the indices of values which sum to 0" do
+            expect([1,1,1,1].two_sum).to eq([])
+            expect([1,2,3,1].two_sum).to eq([])
+            expect([-1, 0, 2, -2, 1].two_sum).to eq([[0,4], [2,3]])
+            expect([].two_sum).to eq([])
+        end
+    end
 
-        it "should return unique values in the array" do
-            expect(arr1.two_sum).to eq([])
-            expect(arr2.two_sum).to eq([[0, 4], [2, 3]])
-        end 
-    end 
+    describe "#my_transpose" do
+        let(:rows) {[
+          [0, 1, 2],
+          [3, 4, 5],
+          [6, 7, 8]
+        ]}
+        let(:cols) {[
+          [0, 3, 6],
+          [1, 4, 7],
+          [2, 5, 8]
+        ]}
+        let(:rows_t) {[
+          [0, 3, 6],
+          [1, 4, 7],
+          [2, 5, 8]
+        ]}
+        let(:cols_t) {[
+          [0, 1, 2],
+          [3, 4, 5],
+          [6, 7, 8]
+        ]}
 
-
-
-end 
+        it "rotates an n x m 2D array" do
+            expect(rows.my_transpose).to eq(rows_t)
+            expect(cols.my_transpose).to eq(cols_t)
+        end
+    end
+end
