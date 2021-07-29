@@ -55,6 +55,13 @@ describe "#profit" do
         expect(profit([100, 180, 260, 310, 40, 535, 695])).to eq([4, 6])
         expect(profit([100, 180, 260, 310, 695, 535, 40])).to eq([0, 4])
         expect(profit([100, 180, 50, 55, 1000, 535, 40])).to eq([2, 4])
-        expect(profit([60, 180, 50, 1000, 40, 535, 500])).to eq([2, 4])
+        expect(profit([60, 180, 50, 1000, 40, 535, 500])).to eq([2, 3])
+    end
+    it "should handle empty inputs" do 
+        expect(profit([])).to eq([])
+
+    end 
+    it "should know when to not buy at all" do 
+        expect(profit([100, 90, 80, 70, 60, 50])).to eq([])
     end
 end

@@ -24,12 +24,17 @@ end
 
 
 def profit(array)
-    diff = []
-    (0...array.length).each do |idx|
-        (idx...array.length).each do |idx2|
-            diff << array[idx] - array[idx2]
+    pair = []
+    maximum = 0
+    (0...array.length).each do |first|
+        (first...array.length).each do |second|
+            current_max = array[second] - array[first]
+            if current_max > maximum
+                pair = [first, second]
+                maximum = current_max 
+            end 
         end
         
     end
-    array.max
+    return pair 
 end
