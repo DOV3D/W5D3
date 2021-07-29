@@ -41,9 +41,21 @@ end
 
 module Stepable 
     def moves 
+
+        positions  = []
+
+        move_diffs.each do |move|
+            new_pos = @pos + move 
+            if @board[new_pos].color != @color
+                positions << new_pos
+                
+            end 
+        end 
+
         
     end
 
+    private 
     def move_diffs
     end 
 
@@ -85,17 +97,17 @@ module Slideable
     def grow_unblocked_moves_in_dir(dx, dy)
         # condition for loop breaking
         arr = []
-        x_pos = self.pos[0]
-        y_pos = self.pos[1]
+        x_pos = @pos[0]
+        y_pos = @pos[1]
         #for each direction, collect all moves in that direction 
         #check if reaches the end of the board
-        until x_pos == 0 || y_pos == 0 || x_pos == 7 || y_pos == 7 || board.rows[x_pos, y_pos].color == self.color
+        until x_pos == 0 || y_pos == 0 || x_pos == 7 || y_pos == 7 || @board[x_pos, y_pos].color == @color
             # Add a position
             x_pos += dx
             y_pos += dy
             arr << [x_pos, y_pos]
             #check if the other side is present (capture them)  
-            break if board.rows[x_pos, y_pos].color != self.color
+            break if @board[x_pos, y_pos].color != @color
         end
         arr
     end
@@ -150,9 +162,25 @@ class Queen < Piece
 end 
 
 class Knight < Piece
+    def initialize 
+        super 
+    end 
+
+    def mov_diffs
+        positions = [[1, 2], [1, -2], [2, 1], [2, -1], [-1, -2], [-1, 2], [-2, 1], [-2, 1] ]
+
+    end 
 end 
 
 class King < Piece
+    def initialize(color, board, pos) 
+        super(color, board, pos) 
+    end 
+
+    def mov_diffs
+        positions = [[1, 1], [1, -1], [1, 0], [-1, 0], [0, 1], [-1, -1], [-1, 1], [0, -1] ]
+
+    end 
 end 
 
 class Pawn < Piece
