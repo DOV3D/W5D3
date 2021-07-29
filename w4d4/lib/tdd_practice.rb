@@ -22,3 +22,14 @@ class Array
 
 end
 
+
+def profit(array)
+    diff = []
+    (0...array.length).each do |idx|
+        (idx...array.length).each do |idx2|
+            diff << array[idx] - array[idx2]
+        end
+        
+    end
+    array.max
+end
