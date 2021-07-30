@@ -34,5 +34,4 @@ class Deck
 
         cards.map {|symbol, type| Card.new(symbol, type)}  
     end 
-
 end 

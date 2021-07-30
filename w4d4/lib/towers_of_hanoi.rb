@@ -2,11 +2,10 @@ class TowersofHanoi
 
     attr_reader :left, :mid, :right
 
-    def initialize 
+    def initialize
         @left = (1..6).to_a 
         @mid = Array.new(6){" "}
         @right = Array.new(6){" "}
-
     end 
 
     def win?
