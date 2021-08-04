@@ -1,11 +1,13 @@
 
-create table users(
+PRAGMA foreign_keys = ON;
+
+CREATE TABLE users(
     user_id INTEGER PRIMARY KEY,
     fname TEXT NOT NULL,
     lname TEXT NOT NULL
 );
 
-create table questions(
+CREATE TABLE questions(
     question_id INTEGER PRIMARY KEY
     title TEXT NOT NULL, 
     body TEXT NOT NULL,
@@ -13,7 +15,7 @@ create table questions(
     FOREIGN KEY (author_id) REFERENCES users(user_id)
 );
 
-create table question_follows(
+CREATE TABLE question_follows(
     pair_id INTEGER PRIMARY KEY,
     follower_id INTEGER NOT NULL,
     asked_question_id INTEGER NOT NULL,
@@ -23,7 +25,7 @@ create table question_follows(
 
 );
 
-create table replies(
+CREATE TABLE replies(
     reply_id INTEGER PRIMARY KEY,
     body TEXT NOT NULL, 
     question_id INTEGER NOT NULL,
@@ -35,7 +37,7 @@ create table replies(
     FOREIGN KEY(replier_id) REFERENCES users(user_id),
 );
 
-create table question_likes(
+CREATE TABLE question_likes(
     likes_id INTEGER PRIMARY KEY,
     user_id INTEGER NOT NULL, 
     question_id INTEGER NOT NULL, 
@@ -45,43 +47,71 @@ create table question_likes(
 
 );
 
+INSERT INTO
+    users (user_id, fname, lname)
+VALUES
+    (1, 'Joey', 'Fernandez'),
+    (2, 'Snigdha', 'Banda'),
+    (3, 'App', 'Academy');
 
-users
+INSERT INTO
+    questions (question_id, title, body, author_id)
+VALUES
+    (1, 'City Geographies', 'How far is SF from LA?!?', 1)
+    (2, 'City Geographies', 'How far is SF from LA?!?', 2)
+    (3, 'Wellness', 'Have you had COVID in the last 14 days?', 3)
 
-user_id    |    fname     |       lname   
+INSERT INTO
+    question_follows (pair_id, follower_id, asked_question_id)
+VALUES
+    (1, 1, 3)
+    (2, 2, 3)
+    (3, 3, 1);
 
-1               Snigdha         Banda               
-2               App             Academy             
-3               Joey            Fernandez                 
+INSERT INTO
+    replies (reply_id, body, question_id, parent_reply, replier_id)
+VALUES
+    (1, 'Seven hours and lots of coffee', 1, 0, 3)
+    (2, 'A billion years idk', 2, 0, 2)
+    (3, 'Enough time to code', 1, 1, 3);
 
 
-questions
+-- users
 
-question_id     |      title      |       body        |  author_id
-1                    'This is title'    'This is body'       3
-2                   'other title'      'other body'         1
-3                   'This is title'    'This is body'       2
+-- user_id    |    fname     |       lname   
+
+-- 1               Snigdha         Banda               
+-- 2               App             Academy             
+-- 3               Joey            Fernandez                 
 
 
-question_follows
+-- questions
 
-pair_id     |       follower_id      |      asked_question_id
-1                   1                     1
-2                   2                     1
+-- question_id     |      title      |       body        |  author_id
+-- 1                    'This is title'    'This is body'       3
+-- 2                   'other title'      'other body'         1
+-- 3                   'This is title'    'This is body'       2
 
-replies 
 
-reply_id |  body |  ref to question_id| parent_reply | replier_id(ref to user_id) |       
-1           "body"      1                0                   3               
-2           "body2"     1               ref to reply_id         1 
-3
-4
-5
-6                                          2  
+-- question_follows
 
-questions_likes
+-- pair_id     |       follower_id      |      asked_question_id
+-- 1                   1                     1
+-- 2                   2                     1
 
-likes_id|   user_id (ref to user_id)| question_id(ref to questions)      
+-- replies 
+
+-- reply_id |  body |  ref to question_id| parent_reply | replier_id(ref to user_id) |       
+-- 1           "body"      1                0                   3               
+-- 2           "body2"     1               ref to reply_id         1 
+-- 3
+-- 4
+-- 5
+-- 6                                          2  
+
+-- questions_likes
+
+-- likes_id|   user_id (ref to user_id)| question_id(ref to questions)      
 
 
 
