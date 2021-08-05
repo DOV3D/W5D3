@@ -15,9 +15,13 @@ def physics_no_chemistry
     yr 
   FROM
     nobels
-  GROUP BY
-    subject != 'Chemistry'
-  HAVING 
-    subject = 'Physics' ;
+  WHERE
+  subject = 'Physics' AND 
+  (SElECT 
+      yr
+    FROM 
+      nobels 
+    WHERE
+      subject != 'Chemistry')
   SQL
 end

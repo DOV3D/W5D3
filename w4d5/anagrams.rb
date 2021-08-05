@@ -44,7 +44,7 @@
 #     str1.chars.sort! == str2.chars.sort!
 # end
 
-# # O(n log n)   O(n^2)
+# # O(n log n) 
 
 # p third_anagram?("gizmo", "sally")
 # p third_anagram?("elvis", "lives")
