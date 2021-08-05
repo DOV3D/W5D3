@@ -14,10 +14,8 @@ class Course < ApplicationRecord
     class_name: :Course
 
     has_many :instructor,
-    primary_key: instructor_id
-    through: :enrollments,
-    source: :user
-
-    
+    primary_key: :instructor_id, 
+    foreign_key: :id, 
+    class_name: :User
 
 end
