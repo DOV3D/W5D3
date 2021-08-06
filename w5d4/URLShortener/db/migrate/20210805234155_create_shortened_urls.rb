@@ -4,6 +4,7 @@ class CreateShortenedUrls < ActiveRecord::Migration[5.2]
       t.integer :user_id, null: false 
       t.string :long_url, null: false 
       t.string :short_url, null: false 
+      t.timestamps
       #1 user: many url's
       #1 url: many users 
       #1 long url: #1 short url
