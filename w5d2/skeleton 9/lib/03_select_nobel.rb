@@ -10,14 +10,7 @@ require_relative './sqlzoo.rb'
 
 def example_select
   execute(<<-SQL)
-    SELECT
-      yr,
-      subject,
-      winner
-    FROM
-      nobels
-    WHERE
-      yr = 1960
+    
   SQL
 end
 
@@ -27,9 +20,10 @@ def prizes_from_1950
   SELECT
     *
   FROM
-    nobels
+    nobels 
   WHERE
-    yr = 1950;
+    yr = '1950';
+ 
   SQL
 end
 
@@ -41,7 +35,8 @@ def literature_1962
   FROM
     nobels
   WHERE
-    yr = 1962 AND subject = 'Literature';
+    subject = 'Literature' AND yr = '1962';
+  
   SQL
 end
 
@@ -51,9 +46,10 @@ def einstein_prize
   SELECT
     yr, subject
   FROM
-    nobels
+    nobels 
   WHERE
     winner = 'Albert Einstein';
+  
   SQL
 end
 
@@ -65,7 +61,8 @@ def millennial_peace_prizes
   FROM
     nobels
   WHERE
-    subject = 'Peace' AND yr >= 2000;
+    subject = 'Peace' AND yr >= 2000
+  
   SQL
 end
 
@@ -78,7 +75,8 @@ def eighties_literature
     FROM
       nobels
     WHERE
-      subject = 'Literature' AND yr BETWEEN 1980 AND 1989;
+      subject = 'Literature' AND yr BETWEEN 1980 AND 1989
+    
   SQL
 end
 
@@ -86,23 +84,25 @@ def presidential_prizes
   # Show all details of the presidential winners: ('Theodore Roosevelt',
   # 'Woodrow Wilson', 'Jimmy Carter')
   execute(<<-SQL)
-    SELECT
-      *
-    FROM
-      nobels
-    WHERE
-      winner IN ('Theodore Roosevelt', 'Woodrow Wilson', 'Jimmy Carter');
+  SELECT
+    *
+  FROM
+    nobels
+  WHERE
+    winner in ('Theodore Roosevelt', 'Woodrow Wilson', 'Jimmy Carter')
+    
   SQL
 end
 
 def nobel_johns
   # Show the winners with first name John
   execute(<<-SQL)
-    SELECT
-      winner
-    FROM
-      nobels
-    WHERE
-      winner LIKE ('John %');
+  SELECT
+    winner
+  FROM
+    nobels
+  WHERE
+    winner LIKE ('John %')
+    
   SQL
 end
