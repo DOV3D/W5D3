@@ -38,8 +38,60 @@ def palindrome_integer(num)
     
 end
 
-p palindrome_integer(121)
-p palindrome_integer(-121)
-p palindrome_integer(10)
-p palindrome_integer(-101)
+# p palindrome_integer(121)
+# p palindrome_integer(-121)
+# p palindrome_integer(10)
+# p palindrome_integer(-101)
+
+# Write a function to find the longest common prefix string amongst an array of strings.
+
+# If there is no common prefix, return an empty string "".
+
+ 
+
+# Example 1:
+
+# Input: strs = ["flower","flow","flight"]
+# Output: "fl"
+# Example 2:
+
+# Input: strs = ["dog","racecar","car"]
+# Output: ""
+# Explanation: There is no common prefix among the input strings.
+
+#arr[0]
+# flower = flow
+#             temp = ""
+# (0..str2.length).each do |i|
+#     break
+
+# Input: strs = ["flower","flow","flight"]
+
+def longest_common(array)
+    ans = ""
+    str_1 = array.shift
+
+    array.each do |str|
+        temp = ""
+        (0...str_1.length).each do |idx|
+            if str_1[idx] == str[idx]
+                temp += str_1[idx]
+                break if temp.length > ans.length
+            else 
+                break
+            end
+        end
+        if ans.empty?
+            ans = temp
+        elsif ans.length > temp.length
+            ans = temp
+        end
+    end
+    ans
+end 
+
+# strs = ["flower","flow","flight"]
+# strs = ["dog","racecar","car"]
+
+p longest_common(strs)
 
