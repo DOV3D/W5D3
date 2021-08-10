@@ -95,3 +95,7 @@ end
 
 p longest_common(strs)
 
+#set first element 
+#pass next element through bsearch 
+# 
+
