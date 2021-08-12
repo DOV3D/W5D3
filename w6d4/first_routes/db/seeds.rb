@@ -6,11 +6,27 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-tony = User.new(username: 'tony_tiger')
-sam = User.new(username: 'tucan_sam')
-lucky = User.new(username: 'lucky_leprechaun')
-peanut = User.new(username: 'mr_peanut')
+ActiveRecord::Base.transaction do
+    #users
+    
+    User.destroy_all
+    tony = User.create!(username: 'tony_tiger')
+    sam = User.create!(username: 'tucan_sam')
+    lucky = User.create!(username: 'lucky_leprechaun')
+    peanut = User.create!(username: 'mr_peanut')
 
-artworks = Artwork.new([ { title: "frosted_flakes", image_url: "2021.png", artist_id: tony.id }, { title: "froot_loops", image_url: "2020.png", artist_id: sam.id }, { title: "lucky_charms", image_url: "2019.png", artist_id: lucky.id }, { title: "peanuts", image_url: "2018.png", artist_id: peanut.id }])
+    #artworks
+     Artwork.destroy_all
+    frosted_flakes = Artwork.create(title: 'frosted_flakes', image_url: '2021.png', artist_id: tony.id)
+    froot_loops = Artwork.create(title: 'froot_loops', image_url: "2020.png", artist_id: sam.id)
+    lucky_charms = Artwork.create(title: "lucky_charms", image_url: "2019.png", artist_id: lucky.id)
+    peanuts = Artwork.create(title: "peanuts", image_url: "2018.png", artist_id: peanut.id)
 
-artwork_shares = ArtworkShare.new([{ viewer_id: tony.id, artwork_id: 4}, { viewer_id: sam.id, artwork_id: 3}, { viewer_id: lucky.id, artwork_id: 2}, { viewer_id: peanut.id, artwork_id: 1}])
+#     #artworkshares
+   ArtworkShare.destroy_all
+   ArtworkShare.create(viewer_id: tony.id, artwork_id: peanuts.id)
+   ArtworkShare.create(viewer_id: sam.id, artwork_id: lucky_charms.id)
+   ArtworkShare.create(viewer_id: lucky.id, artwork_id: froot_loops.id) 
+   ArtworkShare.create(viewer_id: peanut.id, artwork_id: frosted_flakes.id)
+
+end 
