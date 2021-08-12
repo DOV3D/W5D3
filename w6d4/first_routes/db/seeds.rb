@@ -10,13 +10,13 @@ ActiveRecord::Base.transaction do
     #users
     
     User.destroy_all
-    tony = User.create!(username: 'tony_tiger')
-    sam = User.create!(username: 'tucan_sam')
-    lucky = User.create!(username: 'lucky_leprechaun')
-    peanut = User.create!(username: 'mr_peanut')
+    tony = User.create(username: 'tony_tiger')
+    sam = User.create(username: 'tucan_sam')
+    lucky = User.create(username: 'lucky_leprechaun')
+    peanut = User.create(username: 'mr_peanut')
 
     #artworks
-     Artwork.destroy_all
+    Artwork.destroy_all
     frosted_flakes = Artwork.create(title: 'frosted_flakes', image_url: '2021.png', artist_id: tony.id)
     froot_loops = Artwork.create(title: 'froot_loops', image_url: "2020.png", artist_id: sam.id)
     lucky_charms = Artwork.create(title: "lucky_charms", image_url: "2019.png", artist_id: lucky.id)

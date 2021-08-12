@@ -12,7 +12,6 @@ class ArtworkShare < ApplicationRecord
         foreign_key: :artwork_id,
         class_name: :Artwork
     
-    belongs_to :user
 
     
 end
