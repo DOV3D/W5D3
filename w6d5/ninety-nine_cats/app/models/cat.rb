@@ -2,13 +2,13 @@ require 'action_view'
 class Cat < ApplicationRecord
     include ActionView::Helpers::DateHelper
 
-    validates :cats, :color, inclusion: {in: %w(yellow orange black), message: "%{color} is not a valid color"}
-    validates :cats, :sex, inclusion: {in: %w('M' 'F'), message: "%{sex} is not a valid sex" }
-    validates :cats, :birth_date, presence: true 
-    validates :cats, :color, presence: true 
-    validates :cats, :name, presence: true 
-    validates :cats, :sex, presence: true 
-    validates :cats, :description, presence: true 
+    validates :color, inclusion: {in: %w(yellow orange black), message: "not a valid color"}
+    validates :sex, inclusion: {in: %w(m f), message: "not a valid sex" }
+    validates :birth_date, presence: true 
+    validates :color, presence: true 
+    validates :name, presence: true 
+    validates :sex, presence: true 
+    validates :description, presence: true 
 
 
     def age
