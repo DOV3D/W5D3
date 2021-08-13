@@ -6,6 +6,11 @@ class UsersController < ApplicationController
         # render plain: 'Im in the index action!'
     end
 
+    def show
+        @users = User.find_by 
+
+    end 
+
     def create
         # @user = User.new(params)
         # @user.id = User.first.id
@@ -17,7 +22,7 @@ class UsersController < ApplicationController
         # end
         # render json: params 
 
-        @user = User.new(params.require(:user).permit(:name, :email))
+        @user = User.new(user_params)
         # replace the `user_attributes_here` with the actual attribute keys
         # user.save!
         if @user.save
@@ -31,5 +36,11 @@ class UsersController < ApplicationController
     def show
         render json: params
     end
+
+    private 
+
+    def user_params
+        params.require(:user).permit(:username)
+    end 
 
 end
