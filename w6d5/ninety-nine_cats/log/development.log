@@ -977,3 +977,434 @@ Processing by CatsController#show as HTML
 Completed 200 OK in 482ms (Views: 418.9ms | ActiveRecord: 0.0ms)
 
 
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7219145722961363100)[0m
+  ↳ bin/rails:9
+  [1m[35m (3.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to UpdateCats (20210813231158)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::SchemaMigration Create (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210813231158"]]
+  ↳ bin/rails:9
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (6.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_advisory_unlock(7219145722961363100)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[36mCat Load (1.0ms)[0m  [1m[34mSELECT "cats".* FROM "cats"[0m
+  ↳ db/seeds.rb:8
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mCat Create (2.9ms)[0m  [1m[32mINSERT INTO "cats" ("birth_date", "color", "name", "sex", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["birth_date", "2010-10-10"], ["color", "black"], ["name", "Sage"], ["sex", "m"], ["description", "yada"], ["created_at", "2021-08-13 23:44:23.885901"], ["updated_at", "2021-08-13 23:44:23.885901"]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (133.6ms)[0m  [1m[35mDROP DATABASE IF EXISTS "ninety-nine_cats_development"[0m
+  ↳ bin/rails:9
+  [1m[35m (99.8ms)[0m  [1m[35mDROP DATABASE IF EXISTS "ninety-nine_cats_test"[0m
+  ↳ bin/rails:9
+  [1m[35m (504.0ms)[0m  [1m[35mCREATE DATABASE "ninety-nine_cats_development" ENCODING = 'unicode'[0m
+  ↳ bin/rails:9
+  [1m[35m (190.2ms)[0m  [1m[35mCREATE DATABASE "ninety-nine_cats_test" ENCODING = 'unicode'[0m
+  ↳ bin/rails:9
+  [1m[35mSQL (3.1ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  ↳ db/schema.rb:16
+  [1m[35m (2.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "cats" CASCADE[0m
+  ↳ db/schema.rb:18
+  [1m[35m (38.0ms)[0m  [1m[35mCREATE TABLE "cats" ("id" bigserial primary key, "birth_date" date NOT NULL, "color" character varying NOT NULL, "name" character varying NOT NULL, "sex" character varying(1) NOT NULL, "description" text NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:18
+  [1m[35m (8.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (26.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ db/schema.rb:13
+  [1m[35m (1.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20210813231158)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20210813205113);
+
+[0m
+  ↳ db/schema.rb:13
+  [1m[35m (8.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (1.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ db/schema.rb:13
+  [1m[35m (21.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Create (1.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-08-13 23:48:24.976013"], ["updated_at", "2021-08-13 23:48:24.976013"]]
+  ↳ db/schema.rb:13
+  [1m[35m (6.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (1.0ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35mSQL (0.5ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  ↳ db/schema.rb:16
+  [1m[35m (0.7ms)[0m  [1m[35mDROP TABLE IF EXISTS "cats" CASCADE[0m
+  ↳ db/schema.rb:18
+  [1m[35m (48.4ms)[0m  [1m[35mCREATE TABLE "cats" ("id" bigserial primary key, "birth_date" date NOT NULL, "color" character varying NOT NULL, "name" character varying NOT NULL, "sex" character varying(1) NOT NULL, "description" text NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:18
+  [1m[35m (34.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ db/schema.rb:13
+  [1m[35m (1.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20210813231158)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20210813205113);
+
+[0m
+  ↳ db/schema.rb:13
+  [1m[35m (36.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Create (0.8ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-08-13 23:48:25.279231"], ["updated_at", "2021-08-13 23:48:25.279231"]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Update (3.6ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = $1, "updated_at" = $2 WHERE "ar_internal_metadata"."key" = $3[0m  [["value", "test"], ["updated_at", "2021-08-13 23:48:25.286457"], ["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[36mCat Load (1.1ms)[0m  [1m[34mSELECT "cats".* FROM "cats"[0m
+  ↳ db/seeds.rb:8
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mCat Create (1.2ms)[0m  [1m[32mINSERT INTO "cats" ("birth_date", "color", "name", "sex", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["birth_date", "2010-10-10"], ["color", "black"], ["name", "Sage"], ["sex", "m"], ["description", "yada"], ["created_at", "2021-08-13 23:48:25.431916"], ["updated_at", "2021-08-13 23:48:25.431916"]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+Started GET "/" for ::1 at 2021-08-13 16:49:02 -0700
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/snigdhabanda/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/snigdhabanda/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/railties-5.2.6/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/snigdhabanda/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/railties-5.2.6/lib/rails/templates/rails/welcome/index.html.erb (11.0ms)
+Completed 200 OK in 46ms (Views: 31.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/cats" for ::1 at 2021-08-13 16:49:48 -0700
+Processing by CatsController#index as HTML
+  Rendering cats/index.html.erb within layouts/application
+  [1m[36mCat Load (28.8ms)[0m  [1m[34mSELECT "cats".* FROM "cats"[0m
+  ↳ app/views/cats/index.html.erb:2
+  Rendered cats/index.html.erb within layouts/application (81.8ms)
+Completed 200 OK in 2471ms (Views: 2416.3ms | ActiveRecord: 40.0ms)
+
+
+Started GET "/cats/1" for ::1 at 2021-08-13 16:49:53 -0700
+Processing by CatsController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendering cats/show.html.erb within layouts/application
+  Rendered cats/show.html.erb within layouts/application (139.7ms)
+Completed 500 Internal Server Error in 162ms (ActiveRecord: 0.0ms)
+
+
+
+SyntaxError - syntax error, unexpected '<'
+...reeze;@output_buffer.append=( <table>
+...                              ^
+/Users/snigdhabanda/Desktop/app_academy/aa_classwork/w6d5/ninety-nine_cats/app/views/cats/show.html.erb:7: unknown regexp options - tr
+/Users/snigdhabanda/Desktop/app_academy/aa_classwork/w6d5/ninety-nine_cats/app/views/cats/show.html.erb:8: syntax error, unexpected '<'
+    </thead>
+    ^
+/Users/snigdhabanda/Desktop/app_academy/aa_classwork/w6d5/ninety-nine_cats/app/views/cats/show.html.erb:12: unknown regexp options - tr
+/Users/snigdhabanda/Desktop/app_academy/aa_classwork/w6d5/ninety-nine_cats/app/views/cats/show.html.erb:12: unmatched close parenthesis: /thead>
+    <tbody>
+        <tr>
+        <%= render 'cat', cat: cat);@output_buffer.safe_append='
+        </
+/Users/snigdhabanda/Desktop/app_academy/aa_classwork/w6d5/ninety-nine_cats/app/views/cats/show.html.erb:13: syntax error, unexpected '<'
+    </tbody>
+    ^
+/Users/snigdhabanda/Desktop/app_academy/aa_classwork/w6d5/ninety-nine_cats/app/views/cats/show.html.erb:14: unknown regexp options - tabl
+/Users/snigdhabanda/Desktop/app_academy/aa_classwork/w6d5/ninety-nine_cats/app/views/cats/show.html.erb:18: unterminated string meets end of file
+          end
+             ^
+/Users/snigdhabanda/Desktop/app_academy/aa_classwork/w6d5/ninety-nine_cats/app/views/cats/show.html.erb:18: syntax error, unexpected end-of-input, expecting ')'
+          end
+             ^:
+  app/views/cats/show.html.erb:3:in `'
+
+Started POST "/__better_errors/7d8ee2230ef973c3/variables" for ::1 at 2021-08-13 16:49:53 -0700
+Started GET "/cats" for ::1 at 2021-08-13 16:50:17 -0700
+Processing by CatsController#index as HTML
+  Rendering cats/index.html.erb within layouts/application
+  [1m[36mCat Load (27.0ms)[0m  [1m[34mSELECT "cats".* FROM "cats"[0m
+  ↳ app/views/cats/index.html.erb:2
+  Rendered cats/index.html.erb within layouts/application (29.9ms)
+Completed 200 OK in 85ms (Views: 57.1ms | ActiveRecord: 27.0ms)
+
+
+Started GET "/cats/1" for ::1 at 2021-08-13 16:50:19 -0700
+Processing by CatsController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendering cats/show.html.erb within layouts/application
+  Rendered cats/show.html.erb within layouts/application (1.9ms)
+Completed 500 Internal Server Error in 22ms (ActiveRecord: 0.0ms)
+
+
+
+SyntaxError - syntax error, unexpected '<', expecting keyword_end
+'.freeze; <table>
+          ^
+/Users/snigdhabanda/Desktop/app_academy/aa_classwork/w6d5/ninety-nine_cats/app/views/cats/show.html.erb:7: unknown regexp options - tr
+/Users/snigdhabanda/Desktop/app_academy/aa_classwork/w6d5/ninety-nine_cats/app/views/cats/show.html.erb:8: syntax error, unexpected '<'
+    </thead>
+    ^
+/Users/snigdhabanda/Desktop/app_academy/aa_classwork/w6d5/ninety-nine_cats/app/views/cats/show.html.erb:12: unknown regexp options - tr
+/Users/snigdhabanda/Desktop/app_academy/aa_classwork/w6d5/ninety-nine_cats/app/views/cats/show.html.erb:13: syntax error, unexpected '<'
+    </tbody>
+    ^
+/Users/snigdhabanda/Desktop/app_academy/aa_classwork/w6d5/ninety-nine_cats/app/views/cats/show.html.erb:14: unknown regexp options - tabl
+/Users/snigdhabanda/Desktop/app_academy/aa_classwork/w6d5/ninety-nine_cats/app/views/cats/show.html.erb:18: unterminated string meets end of file
+          end
+             ^
+/Users/snigdhabanda/Desktop/app_academy/aa_classwork/w6d5/ninety-nine_cats/app/views/cats/show.html.erb:18: syntax error, unexpected end-of-input, expecting keyword_end
+          end
+             ^:
+  app/views/cats/show.html.erb:3:in `'
+
+Started POST "/__better_errors/d1056ca6594f29c8/variables" for ::1 at 2021-08-13 16:50:19 -0700
+Started GET "/cats" for ::1 at 2021-08-13 16:52:19 -0700
+  [1m[35m (26.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/snigdhabanda/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+Processing by CatsController#index as HTML
+  Rendering cats/index.html.erb within layouts/application
+  [1m[36mCat Load (1.1ms)[0m  [1m[34mSELECT "cats".* FROM "cats"[0m
+  ↳ app/views/cats/index.html.erb:2
+  Rendered cats/index.html.erb within layouts/application (39.5ms)
+Completed 200 OK in 393ms (Views: 362.1ms | ActiveRecord: 18.2ms)
+
+
+Started GET "/cats/1" for ::1 at 2021-08-13 16:52:21 -0700
+Processing by CatsController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendering cats/show.html.erb within layouts/application
+  Rendered cats/show.html.erb within layouts/application (339.3ms)
+Completed 500 Internal Server Error in 361ms (ActiveRecord: 0.0ms)
+
+
+
+NameError - undefined local variable or method `cat' for #<#<Class:0x00007fa1f3d8a828>:0x00007fa1f376e458>
+Did you mean?  catch:
+  app/views/cats/show.html.erb:11:in `_app_views_cats_show_html_erb__721236027345759236_70166775559840'
+
+Started POST "/__better_errors/ca074fffbf9d1331/variables" for ::1 at 2021-08-13 16:52:22 -0700
+Started GET "/cats/1" for ::1 at 2021-08-13 16:54:34 -0700
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/snigdhabanda/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+Processing by CatsController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendering cats/show.html.erb within layouts/application
+  Rendered cats/show.html.erb within layouts/application (410.3ms)
+Completed 500 Internal Server Error in 458ms (ActiveRecord: 0.0ms)
+
+
+
+NameError - undefined local variable or method `cat' for #<#<Class:0x00007fe113d84a18>:0x00007fe115206248>
+Did you mean?  catch:
+  app/views/cats/show.html.erb:11:in `_app_views_cats_show_html_erb___194120008593576843_70302338658240'
+
+Started POST "/__better_errors/76afc6817ac3d13a/variables" for ::1 at 2021-08-13 16:54:36 -0700
+Started GET "/cats" for ::1 at 2021-08-13 16:56:20 -0700
+Processing by CatsController#index as HTML
+  Rendering cats/index.html.erb within layouts/application
+  [1m[36mCat Load (1.0ms)[0m  [1m[34mSELECT "cats".* FROM "cats"[0m
+  ↳ app/views/cats/index.html.erb:2
+  Rendered cats/index.html.erb within layouts/application (66.1ms)
+Completed 200 OK in 475ms (Views: 410.0ms | ActiveRecord: 46.9ms)
+
+
+Started GET "/cats/1" for ::1 at 2021-08-13 16:56:23 -0700
+Processing by CatsController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendering cats/show.html.erb within layouts/application
+  Rendered cats/_cat.html.erb (3.4ms)
+  Rendered cats/show.html.erb within layouts/application (10.4ms)
+Completed 500 Internal Server Error in 30ms (ActiveRecord: 0.0ms)
+
+
+
+SyntaxError - syntax error, unexpected '<'
+...reeze;@output_buffer.append=( <table>
+...                              ^
+/Users/snigdhabanda/Desktop/app_academy/aa_classwork/w6d5/ninety-nine_cats/app/views/cats/_cat.html.erb:14: unknown regexp options - tr
+/Users/snigdhabanda/Desktop/app_academy/aa_classwork/w6d5/ninety-nine_cats/app/views/cats/_cat.html.erb:15: syntax error, unexpected '<'
+    </thead>
+    ^
+/Users/snigdhabanda/Desktop/app_academy/aa_classwork/w6d5/ninety-nine_cats/app/views/cats/_cat.html.erb:18: unknown regexp options - td
+/Users/snigdhabanda/Desktop/app_academy/aa_classwork/w6d5/ninety-nine_cats/app/views/cats/_cat.html.erb:19: syntax error, unexpected '<'
+            <td>Name</td>
+            ^
+/Users/snigdhabanda/Desktop/app_academy/aa_classwork/w6d5/ninety-nine_cats/app/views/cats/_cat.html.erb:20: unknown regexp options - td
+/Users/snigdhabanda/Desktop/app_academy/aa_classwork/w6d5/ninety-nine_cats/app/views/cats/_cat.html.erb:21: syntax error, unexpected '<'
+            <td>Sex</td>
+            ^
+/Users/snigdhabanda/Desktop/app_academy/aa_classwork/w6d5/ninety-nine_cats/app/views/cats/_cat.html.erb:22: unknown regexp options - td
+/Users/snigdhabanda/Desktop/app_academy/aa_classwork/w6d5/ninety-nine_cats/app/views/cats/_cat.html.erb:23: syntax error, unexpected '<'
+        </tr>
+        ^
+/Users/snigdhabanda/Desktop/app_academy/aa_classwork/w6d5/ninety-nine_cats/app/views/cats/_cat.html.erb:24: unknown regexp options - tbdy
+/Users/snigdhabanda/Desktop/app_academy/aa_classwork/w6d5/ninety-nine_cats/app/views/cats/_cat.html.erb:25: syntax error, unexpected '<'
+</table> /);
+^:
+  app/views/cats/_cat.html.erb:10:in `'
+  app/views/cats/show.html.erb:11:in `_app_views_cats_show_html_erb___194120008593576843_70302347356820'
+
+Started POST "/__better_errors/ce0183be8f52ab5a/variables" for ::1 at 2021-08-13 16:56:23 -0700
+Started GET "/cats/1" for ::1 at 2021-08-13 16:56:43 -0700
+  [1m[35m (2.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/snigdhabanda/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+Processing by CatsController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendering cats/show.html.erb within layouts/application
+  Rendered cats/_cat.html.erb (2.0ms)
+  Rendered cats/show.html.erb within layouts/application (9.6ms)
+Completed 500 Internal Server Error in 40ms (ActiveRecord: 0.0ms)
+
+
+
+SyntaxError - syntax error, unexpected '<'
+...reeze;@output_buffer.append=( <table>
+...                              ^
+/Users/snigdhabanda/Desktop/app_academy/aa_classwork/w6d5/ninety-nine_cats/app/views/cats/_cat.html.erb:14: unknown regexp options - tr
+/Users/snigdhabanda/Desktop/app_academy/aa_classwork/w6d5/ninety-nine_cats/app/views/cats/_cat.html.erb:15: syntax error, unexpected '<'
+    </thead>
+    ^
+/Users/snigdhabanda/Desktop/app_academy/aa_classwork/w6d5/ninety-nine_cats/app/views/cats/_cat.html.erb:18: unknown regexp options - td
+/Users/snigdhabanda/Desktop/app_academy/aa_classwork/w6d5/ninety-nine_cats/app/views/cats/_cat.html.erb:19: syntax error, unexpected '<'
+            <td>Name</td>
+            ^
+/Users/snigdhabanda/Desktop/app_academy/aa_classwork/w6d5/ninety-nine_cats/app/views/cats/_cat.html.erb:20: unknown regexp options - td
+/Users/snigdhabanda/Desktop/app_academy/aa_classwork/w6d5/ninety-nine_cats/app/views/cats/_cat.html.erb:21: syntax error, unexpected '<'
+            <td>Sex</td>
+            ^
+/Users/snigdhabanda/Desktop/app_academy/aa_classwork/w6d5/ninety-nine_cats/app/views/cats/_cat.html.erb:22: unknown regexp options - td
+/Users/snigdhabanda/Desktop/app_academy/aa_classwork/w6d5/ninety-nine_cats/app/views/cats/_cat.html.erb:23: syntax error, unexpected '<'
+        </tr>
+        ^
+/Users/snigdhabanda/Desktop/app_academy/aa_classwork/w6d5/ninety-nine_cats/app/views/cats/_cat.html.erb:24: unknown regexp options - tbdy
+/Users/snigdhabanda/Desktop/app_academy/aa_classwork/w6d5/ninety-nine_cats/app/views/cats/_cat.html.erb:25: syntax error, unexpected '<'
+</table> /);
+^:
+  app/views/cats/_cat.html.erb:10:in `'
+  app/views/cats/show.html.erb:11:in `_app_views_cats_show_html_erb___3256603564987210033_70099966845920'
+
+Started POST "/__better_errors/c8fc6ff316608ad6/variables" for ::1 at 2021-08-13 16:56:43 -0700
+Started POST "/__better_errors/c8fc6ff316608ad6/variables" for ::1 at 2021-08-13 16:57:46 -0700
+Started GET "/" for ::1 at 2021-08-13 16:57:55 -0700
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/snigdhabanda/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/snigdhabanda/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/railties-5.2.6/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/snigdhabanda/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/railties-5.2.6/lib/rails/templates/rails/welcome/index.html.erb (9.4ms)
+Completed 200 OK in 39ms (Views: 25.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/cats" for ::1 at 2021-08-13 16:58:04 -0700
+Processing by CatsController#index as HTML
+  Rendering cats/index.html.erb within layouts/application
+  [1m[36mCat Load (2.1ms)[0m  [1m[34mSELECT "cats".* FROM "cats"[0m
+  ↳ app/views/cats/index.html.erb:2
+  Rendered cats/index.html.erb within layouts/application (90.0ms)
+Completed 200 OK in 420ms (Views: 360.3ms | ActiveRecord: 46.9ms)
+
+
+Started GET "/cats/1" for ::1 at 2021-08-13 16:58:06 -0700
+Processing by CatsController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendering cats/show.html.erb within layouts/application
+  Rendered cats/show.html.erb within layouts/application (4.3ms)
+Completed 500 Internal Server Error in 25ms (ActiveRecord: 0.0ms)
+
+
+
+SyntaxError - syntax error, unexpected '<', expecting keyword_end
+'.freeze; <table>
+          ^
+/Users/snigdhabanda/Desktop/app_academy/aa_classwork/w6d5/ninety-nine_cats/app/views/cats/show.html.erb:7: unknown regexp options - tr
+/Users/snigdhabanda/Desktop/app_academy/aa_classwork/w6d5/ninety-nine_cats/app/views/cats/show.html.erb:8: syntax error, unexpected '<'
+    </thead>
+    ^
+/Users/snigdhabanda/Desktop/app_academy/aa_classwork/w6d5/ninety-nine_cats/app/views/cats/show.html.erb:12: unknown regexp options - tr
+/Users/snigdhabanda/Desktop/app_academy/aa_classwork/w6d5/ninety-nine_cats/app/views/cats/show.html.erb:13: syntax error, unexpected '<'
+    </tbody>
+    ^
+/Users/snigdhabanda/Desktop/app_academy/aa_classwork/w6d5/ninety-nine_cats/app/views/cats/show.html.erb:14: unknown regexp options - tabl
+/Users/snigdhabanda/Desktop/app_academy/aa_classwork/w6d5/ninety-nine_cats/app/views/cats/show.html.erb:18: unterminated string meets end of file
+          end
+             ^
+/Users/snigdhabanda/Desktop/app_academy/aa_classwork/w6d5/ninety-nine_cats/app/views/cats/show.html.erb:18: syntax error, unexpected end-of-input, expecting keyword_end
+          end
+             ^:
+  app/views/cats/show.html.erb:3:in `'
+
+Started POST "/__better_errors/52b608bb9743aea3/variables" for ::1 at 2021-08-13 16:58:07 -0700
+Started GET "/cats/1" for ::1 at 2021-08-13 16:58:55 -0700
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/snigdhabanda/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+Processing by CatsController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendering cats/show.html.erb within layouts/application
+  Rendered cats/show.html.erb within layouts/application (4.9ms)
+Completed 500 Internal Server Error in 30ms (ActiveRecord: 0.0ms)
+
+
+
+SyntaxError - syntax error, unexpected '<'
+...reeze;@output_buffer.append=( <table>
+...                              ^
+/Users/snigdhabanda/Desktop/app_academy/aa_classwork/w6d5/ninety-nine_cats/app/views/cats/show.html.erb:7: unknown regexp options - tr
+/Users/snigdhabanda/Desktop/app_academy/aa_classwork/w6d5/ninety-nine_cats/app/views/cats/show.html.erb:8: syntax error, unexpected '<'
+    </thead>
+    ^
+/Users/snigdhabanda/Desktop/app_academy/aa_classwork/w6d5/ninety-nine_cats/app/views/cats/show.html.erb:12: unknown regexp options - tr
+/Users/snigdhabanda/Desktop/app_academy/aa_classwork/w6d5/ninety-nine_cats/app/views/cats/show.html.erb:13: syntax error, unexpected '<'
+    </tbody>
+    ^
+/Users/snigdhabanda/Desktop/app_academy/aa_classwork/w6d5/ninety-nine_cats/app/views/cats/show.html.erb:14: unknown regexp options - tabl
+/Users/snigdhabanda/Desktop/app_academy/aa_classwork/w6d5/ninety-nine_cats/app/views/cats/show.html.erb:14: syntax error, unexpected ')'
+</table> );
+         ^
+/Users/snigdhabanda/Desktop/app_academy/aa_classwork/w6d5/ninety-nine_cats/app/views/cats/show.html.erb:16: syntax error, unexpected keyword_ensure, expecting ')'
+          ensure
+          ^~~~~~
+/Users/snigdhabanda/Desktop/app_academy/aa_classwork/w6d5/ninety-nine_cats/app/views/cats/show.html.erb:18: syntax error, unexpected keyword_end, expecting ')'
+          end
+          ^~~:
+  app/views/cats/show.html.erb:3:in `'
+
+Started POST "/__better_errors/20bec8f8ac843c94/variables" for ::1 at 2021-08-13 16:58:56 -0700
