@@ -1,40 +1,32 @@
 class ArtworkSharesController < ApplicationController
 
-    def index
-        artwork_shares = ArtworkShares.all
-        render json: artwork_shares
+    # def index
+    #     users = ArtworkShare.all
+    #     render json: users
         
+    # end
+    
+    def create
+        artwork_shares = ArtworkShare.new(artwork_shares_params)
+        if artwork_shares.save
+            render json: artwork_shares
+        else
+            render json: artwork_shares.errors.full_messages, status: 422
+        end 
     end
-
-    def show
-        artwork_shares = ArtworkShares.find(params[:id])
-        render json: artwork
-    end
-
-
 
     def destroy 
-        artwork_shares = ArtworkShares.find_by(id: params[:id])
+        artwork_shares = ArtworkShare.find_by(id: params[:id])
 
         if artwork_shares
             artwork_shares.destroy
-            redirect_to artwork_shares_url 
+            render json: artwork_shares
         end 
     end 
 
-    def update
-        artwork = Artwork.find_by(id: params[:id])
-
-        if artwork.update(artwork_params)
-            redirect_to artwork_url(artwork)
-        else
-            render json: artwork.errors.full_messages, status: 422
-        end
-    end
-
     private 
-    def artwork_params 
-        params.require(:artwork).permit(:title, :image_url, :artist_id)
+    def artwork_shares_params 
+        params.require(:artwork_shares).permit(:artwork_id, :viewer_id)
     end 
 
 end 
