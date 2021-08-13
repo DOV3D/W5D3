@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show, :create, :destroy, :update]
 
   resources :artworks
+
+  resources :artwork_shares, only: [:create, :destroy]
 end
