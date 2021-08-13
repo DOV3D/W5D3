@@ -3276,3 +3276,45 @@ Completed 404 Not Found in 3ms (ActiveRecord: 0.8ms)
 ActiveRecord::RecordNotFound (Couldn't find User with 'id'=42):
   
 app/controllers/users_controller.rb:10:in `show'
+Started DELETE "/users/42" for ::1 at 2021-08-12 16:52:53 -0700
+  [1m[35m (2.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/snigdhabanda/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+Processing by UsersController#destroy as */*
+  Parameters: {"id"=>"42"}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 42], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:32
+No template found for UsersController#destroy, rendering head :no_content
+Completed 204 No Content in 595ms (ActiveRecord: 29.4ms)
+
+
+Started DELETE "/users/43" for ::1 at 2021-08-12 16:53:08 -0700
+Processing by UsersController#destroy as */*
+  Parameters: {"id"=>"43"}
+  [1m[36mUser Load (5.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 43], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:32
+  [1m[35m (10.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:35
+  [1m[36mArtwork Load (1.6ms)[0m  [1m[34mSELECT "artworks".* FROM "artworks" WHERE "artworks"."artist_id" = $1[0m  [["artist_id", 43]]
+  ↳ app/controllers/users_controller.rb:35
+  [1m[36mArtwork Destroy (14.6ms)[0m  [1m[31mDELETE FROM "artworks" WHERE "artworks"."id" = $1[0m  [["id", 2]]
+  ↳ app/controllers/users_controller.rb:35
+  [1m[36mArtwork Load (3.7ms)[0m  [1m[34mSELECT "artworks".* FROM "artworks" INNER JOIN "artwork_shares" ON "artworks"."id" = "artwork_shares"."artwork_id" WHERE "artwork_shares"."viewer_id" = $1[0m  [["viewer_id", 43]]
+  ↳ app/controllers/users_controller.rb:35
+  [1m[36mArtworkShare Load (0.7ms)[0m  [1m[34mSELECT "artwork_shares".* FROM "artwork_shares" WHERE "artwork_shares"."viewer_id" = $1 AND "artwork_shares"."artwork_id" = $2[0m  [["viewer_id", 43], ["artwork_id", 3]]
+  ↳ app/controllers/users_controller.rb:35
+  [1m[36mArtworkShare Destroy (9.5ms)[0m  [1m[31mDELETE FROM "artwork_shares" WHERE "artwork_shares"."id" = $1[0m  [["id", 2]]
+  ↳ app/controllers/users_controller.rb:35
+  [1m[36mUser Destroy (1.5ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 43]]
+  ↳ app/controllers/users_controller.rb:35
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:35
+Completed 200 OK in 408ms (Views: 1.4ms | ActiveRecord: 207.3ms)
+
+
+Started GET "/users" for ::1 at 2021-08-12 16:53:15 -0700
+Processing by UsersController#index as */*
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:5
+Completed 200 OK in 5ms (Views: 2.5ms | ActiveRecord: 1.1ms)
+
+
