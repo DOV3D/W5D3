@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
     before_action :require_logged_out, only: [:new, :create]
+    
     def create
         @user = User.new(new_user_params)
         if @user.save

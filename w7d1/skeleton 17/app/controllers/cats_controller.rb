@@ -1,4 +1,7 @@
+require_relative 'application_controller.rb'
 class CatsController < ApplicationController
+  before_action :owns_cat, only: [:edit, :update]
+  
   def index
     @cats = Cat.all
     render :index
@@ -24,6 +27,15 @@ class CatsController < ApplicationController
     end
   end
 
+  def owns_cat
+    @cat = Cat.find(params[:id])
+    if !current_user.cats.include?(@cat)
+      redirect_to cats_url 
+    end 
+
+
+  end 
+
   def edit
     @cat = Cat.find(params[:id])
     render :edit
@@ -34,9 +46,10 @@ class CatsController < ApplicationController
     if @cat.update_attributes(cat_params)
       redirect_to cat_url(@cat)
     else
-      flash.now[:errors] = @cat.errors.full_messages
-      render :edit
+        flash.now[:errors] = @cat.errors.full_messages
+        render :edit
     end
+  
   end
 
   private
