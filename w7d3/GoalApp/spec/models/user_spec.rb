@@ -24,7 +24,7 @@ RSpec.describe User, type: :model do
       FactoryBot.create(:user, username: 'Capy2')
 
       user = User.find_by(username: 'Capy2')
-      expect(user.password).not_to eq('password', 'password123')
+      expect(user.password).not_to eq('password')
       expect(user.password_digest).not_to eq('password')
     end
 
