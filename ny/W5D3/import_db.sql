@@ -38,7 +38,7 @@ CREATE TABLE replies(
 
 
     FOREIGN KEY (reply_id) REFERENCES questions(id),
-    FOREIGN KEY (child_reply_id) REFERENCES replies(reply_id),
+    FOREIGN KEY (child_reply_id) REFERENCES replies(id),
     FOREIGN KEY (author_id) REFERENCES users(id)
 
 );
