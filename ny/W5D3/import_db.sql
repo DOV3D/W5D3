@@ -77,7 +77,7 @@ VALUES
     (3, 1);
 
 INSERT INTO replies
-    (reply_id, child_reply_id, author_id, body)
+    (question_id, child_reply_id, user_id, body)
 VALUES 
     (1,NULL, 2, "16 weeks"),
     (2,NULL, 3, "Who knows?"),
