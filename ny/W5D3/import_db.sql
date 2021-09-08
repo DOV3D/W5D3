@@ -31,15 +31,15 @@ CREATE TABLE question_follows(
 
 CREATE TABLE replies(
     id INTEGER PRIMARY KEY,
-    reply_id INTEGER NOT NULL,
+    question_id INTEGER NOT NULL,
     child_reply_id INTEGER,
-    author_id INTEGER NOT NULL,
+    user_id INTEGER NOT NULL,
     body TEXT NOT NULL,
 
 
-    FOREIGN KEY (reply_id) REFERENCES questions(id),
+    FOREIGN KEY (question_id) REFERENCES questions(id),
     FOREIGN KEY (child_reply_id) REFERENCES replies(id),
-    FOREIGN KEY (author_id) REFERENCES users(id)
+    FOREIGN KEY (user_id) REFERENCES users(id)
 
 );
 
